@@ -28,7 +28,7 @@ func main() {
 		line := scanner.Text()
 
 		// do something with the line, for example, print it out
-		data, err := conv.User(line)
+		data, err := conv.Chat(line)
 		if err != nil {
 			panic(err)
 		}

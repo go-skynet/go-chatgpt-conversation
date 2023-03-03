@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	conv, err := conv.NewConversation(os.Getenv("OPENAI_API_TOKEN"))
+	conv, err := conv.New(os.Getenv("OPENAI_API_TOKEN"))
 	if err != nil {
 		panic(err)
 	}
@@ -21,7 +21,7 @@ func main() {
 		line := scanner.Text()
 
 		// do something with the line, for example, print it out
-		data, err := conv.User(line)
+		data, err := conv.Chat(line)
 		if err != nil {
 			panic(err)
 		}

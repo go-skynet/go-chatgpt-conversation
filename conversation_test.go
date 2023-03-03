@@ -1,4 +1,4 @@
-package chatgpt_test
+package conversation_test
 
 import (
 	"os"
@@ -16,7 +16,7 @@ var _ = Describe("ask to gpt", func() {
 			if os.Getenv("OPENAI_API_TOKEN") == "" {
 				Skip("OPENAI_API_TOKEN required to run this test")
 			}
-			cat, err := NewConversation(os.Getenv("OPENAI_API_TOKEN"),
+			cat, err := New(os.Getenv("OPENAI_API_TOKEN"),
 				WithInitialPrompt("You are a cat. You can reply with 'Meow' for yes, and 'Meow Meow' for no."))
 			Expect(err).ToNot(HaveOccurred())
 
@@ -25,7 +25,7 @@ var _ = Describe("ask to gpt", func() {
 
 			Expect(res).To(Equal("Meow."))
 
-			res, err = cat.User("Are you a human?")
+			res, err = cat.Chat("Are you a human?")
 			Expect(err).ToNot(HaveOccurred())
 
 			Expect(res).To(Equal("Meow Meow."))
@@ -37,7 +37,7 @@ var _ = Describe("ask to gpt", func() {
 				{Role: "user", Content: "bar"},
 				{Role: "assistant", Content: "response"}}
 
-			cat, err := NewConversation("none",
+			cat, err := New("none",
 				WithHistory(
 					testHistory,
 				),

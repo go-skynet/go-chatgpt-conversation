@@ -1,4 +1,4 @@
-package chatgpt_test
+package conversation_test
 
 import (
 	"testing"

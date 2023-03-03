@@ -107,7 +107,7 @@ func (c *Conversation) User(input string) (string, error) {
 	return c.converse(c.ctx, roleUser, input)
 }
 
-// Chat is syntax sugar. is equivalent to call User
+// Chat is syntax sugar. is equivalent to call User.
 func (c *Conversation) Chat(input string) (string, error) {
 	return c.User(input)
 }

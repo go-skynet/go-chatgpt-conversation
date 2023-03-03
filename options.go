@@ -6,7 +6,7 @@ import (
 	"github.com/otiai10/openaigo"
 )
 
-// Option is the options for the conversation
+// Option is the options for the conversation.
 type Option func(c *Conversation) error
 
 // WithInitialPrompt allow to load an initial prompt to guide your model's behavior throughout the conversation.
@@ -18,7 +18,7 @@ func WithInitialPrompt(s string) Option {
 	}
 }
 
-// WithModel allows to override the default model (gpt-3.5-turbo)
+// WithModel allows to override the default model (gpt-3.5-turbo).
 func WithModel(model string) Option {
 	return func(c *Conversation) error {
 		c.model = model
@@ -26,7 +26,7 @@ func WithModel(model string) Option {
 	}
 }
 
-// WithHistory allows to inject an history in the conversation
+// WithHistory allows to inject an history in the conversation.
 func WithHistory(msg []openaigo.ChatMessage) Option {
 	return func(c *Conversation) error {
 		c.History = msg
@@ -34,7 +34,7 @@ func WithHistory(msg []openaigo.ChatMessage) Option {
 	}
 }
 
-// WithContext associate a context to the conversation
+// WithContext associate a context to the conversation.
 func WithContext(ctx context.Context) Option {
 	return func(c *Conversation) error {
 		c.ctx = ctx

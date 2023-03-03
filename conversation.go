@@ -92,7 +92,7 @@ func (c *Conversation) converse(ctx context.Context, role, input string) (string
 		return "", err
 	}
 	c.History = append(c.History, openaigo.ChatMessage{Role: roleAssistant, Content: resp})
-	return resp, err
+	return resp, nil
 }
 
 // System writes in the conversation as the "system" role.

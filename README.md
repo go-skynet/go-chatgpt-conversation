@@ -12,11 +12,14 @@ import (
 	"fmt"
 	"os"
 
-	conv "github.com/mudler/go-chatgpt-conversation"
+	conversation "github.com/mudler/go-chatgpt-conversation"
 )
 
 func main() {
-	conv, err := conv.NewConversation(os.Getenv("OPENAI_API_TOKEN"))
+	conv, err := conversation.New(
+		os.Getenv("OPENAI_API_TOKEN"),
+		conversation.WithInitialPrompt("You are a cat. You can reply with 'Meow' for yes, and 'Meow Meow' for no."),
+	)
 	if err != nil {
 		panic(err)
 	}
@@ -32,6 +35,12 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
+
+		// Save the conversation
+		err = conv.Save("/tmp/conversation.json")
+
+		// Load it back
+		conv, err = conversation.Load("/tmp/conversation.json", os.Getenv("OPENAI_API_TOKEN"))
 		fmt.Println(data)
 		fmt.Println("Prompt:")
 	}
@@ -41,5 +50,4 @@ func main() {
 		os.Exit(1)
 	}
 }
-
 ```
